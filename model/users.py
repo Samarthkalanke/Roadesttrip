@@ -115,18 +115,12 @@ class User(db.Model):
     
     @property
     def password(self):
-        return self._password[0:10] + "..." # because of security only show 1st characters
+        return self._password
 
     # update password, this is conventional setter
     def set_password(self, password):
         """Create a hashed password."""
-        self._password = generate_password_hash(password, method='sha256')
-
-    # check password parameter versus stored/encrypted password
-    def is_password(self, password):
-        """Check against hashed password."""
-        result = check_password_hash(self._password, password)
-        return result
+        self._password = password
     
     # dob property is returned as string, to avoid unfriendly outcomes
     @property
@@ -204,13 +198,9 @@ def initUsers():
         db.init_app(app)
         db.create_all()
         """Tester data for table"""
-        u1 = User(name='Thomas Edison', uid='toby', password='123toby', dob=date(1847, 2, 11))
-        u2 = User(name='Nicholas Tesla', uid='niko', password='123niko')
-        u3 = User(name='Alexander Graham Bell', uid='lex', password='123lex')
-        u4 = User(name='Eli Whitney', uid='whit', password='123whit')
-        u5 = User(name='John Mortensen', uid='jm1021', dob=date(1959, 10, 21))
+        u1 = User(name='John Smith', uid='Ford Taurus', password='3/9-3/12')
 
-        users = [u1, u2, u3, u4, u5]
+        users = [u1]
 
         """Builds sample user/note(s) data"""
         for user in users:
