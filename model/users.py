@@ -198,8 +198,9 @@ def initUsers():
         db.create_all()
         """Tester data for table"""
         u1 = User(name='John Smith', uid='Ford Taurus', password='3/9-3/12')
+        u2 = User(name='Trent Cardall', uid='Buick Enclave', password='3/13')
 
-        users = [u1]
+        users = [u1, u2]
 
         """Builds sample user/note(s) data"""
         for user in users:
