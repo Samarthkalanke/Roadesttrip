@@ -4,6 +4,7 @@ from datetime import datetime
 
 from model.reservations import Reservations
 
+
 reservations_api = Blueprint('reservations_api', __name__,
                    url_prefix='/api/reservations')
 
@@ -17,10 +18,10 @@ class ReservationsAPI:
             ''' Read data for json body '''
             #print("this is the body")
             body = request.get_json()
-            
+            reservationid = body.get('reservationid')
             ''' Avoid garbage in, error checking '''
             # validate LicensePlate
-            LicensePlate = body.get('licensePlate')
+            LicensePlate = body.get('LicensePlate')
             if LicensePlate is None or len(LicensePlate) < 2:
                 return {'message': f'LicensePlate is missing, or is less than 2 characters'}, 210
             # look for person and date of reservation
@@ -56,6 +57,7 @@ class ReservationsAPI:
             ''' #2: Key Code block to add user to database '''
             # create user in databaseF
             reservation = uo.create()
+            print(reservation)
             # success returns json of user
             if reservation:
                 return jsonify(reservation.read())
@@ -74,7 +76,7 @@ class ReservationsAPI:
         def put(self):
             reservations = Reservations.query.all()
             json_read = [reservation.read() for reservation in reservations]
-            return jsonify(json_ready)
+            return jsonify(json_read)
 
     class _Delete(Resource):
         def delete(self, id=None):
