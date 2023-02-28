@@ -85,7 +85,7 @@ class Post2(db.Model):
         # file_encode = base64.encodebytes(file_read)
         
         return {
-            "reservationid": self.reservatonid,
+            "reservationid": self.reservationid,
             "car": self.car,
             "LicensePlate": self.LicensePlate,
             "person": self.person,
@@ -131,8 +131,8 @@ class Reservations(db.Model):
     @property
     def name(self):
          return {
-            self.car,
             self.reservationid,
+            self.car,
             self.LicensePlate,
             self.person,
             self.ReservationDate
@@ -152,7 +152,7 @@ class Reservations(db.Model):
 
     def read(self):
         return {
-            "reservationid": self.reservatonid,
+            "reservationid": self.reservationid,
             "car": self.car,
             "LicensePlate": self.LicensePlate,
             "person": self.person,
