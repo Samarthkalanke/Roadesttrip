@@ -16,7 +16,7 @@ dbURI = 'sqlite:///volumes/sqlite.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = dbURI
 app.config['SECRET_KEY'] = 'SECRET_KEY'
-db = SQLAlchemy()
+db = SQLAlchemy(app =app)
 Migrate(app, db)
 
 # Images storage
